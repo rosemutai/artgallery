@@ -1,5 +1,4 @@
 {% extends 'base.html'%}
-{% load static %}
 
 
 {% block content %}
@@ -24,11 +23,11 @@
   z-index: 2;
 }
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
+  margin-bottom: 10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"] {
+.form-signin input[type="username"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -36,38 +35,44 @@
 .h3{
 	text-align: center;
 }
+.blog-posts{
+  max-width: 500px;
+  width: 100%;
+  margin: auto; 
+}
 </style>
 
  
 
 <form class="form-signin" method="post">{% csrf_token %}
-  <div  class="d-flex flex-column pb-3">
-    <!-- <img class="img-fluid mx-auto d-block" src="{% static 'code.png' %}" alt="code" width="72px" height="72px"> -->
-  </div>
-  <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-  <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-   {% for field in login_form %}
+  <h1 class="h3 mb-3 font-weight-normal">Account</h1>
+  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus value="{{account_form.initial.email}}">
+  <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required value="{{account_form.initial.username}}">
+   {% for field in account_form %}
       <p>
         {% for error in field.errors %}
           <p style="color: red">{{ error }}</p>
         {% endfor %}
       </p>
   {% endfor %}
-  {% if login_form.non_field_errors %}
+  {% if account_form.non_field_errors %}
     <div style="color: red">
-      <p>{{login_form.non_field_errors}}</p>
+      <p>{{account_form.non_field_errors}}</p>
     </div>
       
   {% endif %}
 
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  {% if success_message %}
+
+  <p style="color: green; text-align: center;">{{success_message}}</p>
+
+  {% endif %}
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
 </form>
 
 <div class="d-flex flex-column">
-    <a class="m-auto"  href="{% url 'password_reset' %}">Forgot Password?</a>
+    <a class="m-auto"  href="{% url 'password_change'%}">Change password</a>
 </div>
-
-
 
 {% endblock content%}
