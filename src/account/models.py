@@ -3,15 +3,15 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 class MyAccountManager(BaseUserManager):
-  def creat_user(self,email, username, password=None):
+  def create_user(self, email, username, password=None):
     if not email:
       raise ValueError("Users must have an email address")
     if not username:
       raise ValueError("Users must have a username")
 
     user = self.model(
-      email = self.normalize_email(email),
-      username = username
+         email = self.normalize_email(email),
+         username = username
     )
 
     user.set_password(password)
@@ -19,20 +19,22 @@ class MyAccountManager(BaseUserManager):
     return user
 
   def create_superuser(self, email, username ,password):
-    user = self.creat_user(
+    user = self.create_user(
       email = self.normalize_email(email),
-      username = username
+      username = username,
+      password = password
     )
 
     user.is_admin = True
     user.is_staff = True
+    user.is_superuser =True
     user.save(using = self._db)
     return user
 
 
 
 class Account(AbstractBaseUser):
-
+    """docstring for Account"""
     email 		= models.EmailField(verbose_name = "email", max_length= 60, unique = True)
     username 	= models.CharField(max_length = 40, unique = True)
     date_joined	= models.DateTimeField(verbose_name='date joined', auto_now_add = True) 
@@ -54,3 +56,28 @@ class Account(AbstractBaseUser):
       return self.is_admin
     def has_module_perms(self, app_label):
       return True
+
+
+class Profile(models.Model):
+  full_name       = models.CharField(max_length=50)
+  profile_image   = models.ImageField()
+  artist_category = models.CharField(max_length= 50)
+  bio             = models.CharField(max_length= 100)
+  date_created	    = models.DateTimeField(verbose_name='date  created', auto_now_add = True) 
+  
+
+  def __str__(self):
+    return self.full_name
+  
+
+  # full_name 		= models.CharField(max_length = 50)
+	# profile_image	= models.ImageField(upload_to=upload_location, null=True, blank=True)
+	# artist_category = models.CharField(max_length= 50)
+	# bio = models.CharField(max_length= 100)
+	# achievements  = models.CharField(max_length=100)
+	# slug 					= models.SlugField(blank=True, unique=True)
+
+  # def __str__(self):
+	# 	return self.full_name + ","+ self.artist_category + "," +self.bio
+
+

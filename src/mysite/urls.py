@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as  auth_views
 from home.views import(home_screen_view)
-from account.views import(login_view,registration_view,logout_view,account_view)
+from account.views import(login_view,registration_view,logout_view,account_view,create_profile_view,)
 
 urlpatterns = [
     path('',home_screen_view, name="home"),
@@ -26,6 +26,8 @@ urlpatterns = [
     path('login/',login_view, name="login"),
     path('logout', logout_view, name="logout"),
     path('register/' ,registration_view, name='register'),
+    path('create/' ,create_profile_view, name='create'),
+    # path('must_authenticate/',must_authenticate_view, name='must_authenticate'),
 
 
 
