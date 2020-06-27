@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from account.forms import AccountAuthenticationForm, AccountUpdateForm,RegistrationForm, CreateProfileForm
+from account.models import Account
 
 # Create your views here.
 def registration_view(request):
@@ -33,11 +34,13 @@ def logout_view(request):
 
 
 def login_view(request):
+
 	context = {}
+
 	user = request.user
 	if user.is_authenticated: 
 		return redirect("home")
-		
+
 	if request.POST:
 		form = AccountAuthenticationForm(request.POST)
 		if form.is_valid():
@@ -48,39 +51,46 @@ def login_view(request):
 			if user:
 				login(request, user)
 				return redirect("home")
+
 	else:
 		form = AccountAuthenticationForm()
 
 	context['login_form'] = form
 
 	# print(form)
-	return render(request, "account/login.html", context)
+	return render(request, "home/home.html", context)
+
 
 
 def account_view(request):
+	context = {}
 	if not request.user.is_authenticated:
 			return redirect("login")
 
-	context = {}
-	if request.POST:
-		form = AccountUpdateForm(request.POST, instance=request.user)
-		if form.is_valid():
-			form.initial = {
-					"email": request.POST['email'],
-					"username": request.POST['username'],
-			}
-			form.save()
-			context['success_message'] = "Updated"
 	else:
-		form = AccountUpdateForm(
+			account = Account.objects.all()
+			context['account'] = account
 
-			initial={
-					"email": request.user.email, 
-					"username": request.user.username,
-				}
-			)
+	
+	# if request.POST:
+	# 	form = AccountUpdateForm(request.POST, instance=request.user)
+	# 	if form.is_valid():
+	# 		form.initial = {
+	# 				"email": request.POST['email'],
+	# 				"username": request.POST['username'],
+	# 		}
+	# 		form.save()
+	# 		context['success_message'] = "Updated"
+	# else:
+	# 	form = AccountUpdateForm(
 
-	context['account_form'] = form
+	# 		initial={
+	# 				"email": request.user.email, 
+	# 				"username": request.user.username,
+	# 			}
+	# 		)
+
+	# context['accounts'] = form
 
 	# blog_posts = BlogPost.objects.filter(author=request.user)
 	# context['blog_posts'] = blog_posts
@@ -114,7 +124,7 @@ def create_profile_view(request):
 
 		# form.save()
 
-	context['form'] = form
+			context['form'] = form
 
 	return render(request, "account/create_profile.html", context)
 

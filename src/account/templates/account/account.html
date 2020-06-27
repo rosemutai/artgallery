@@ -43,7 +43,7 @@
 </style>
 
  
-
+<!-- 
 <form class="form-signin" method="post">{% csrf_token %}
   <h1 class="h3 mb-3 font-weight-normal">Account</h1>
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus value="{{account_form.initial.email}}">
@@ -75,6 +75,215 @@
 
 <div class="d-flex flex-column">
     <a class="m-auto"  href="{% url 'password_change'%}">Change password</a>
-</div>
+</div> -->
 
-{% endblock content%}
+<div class="card">
+  <div class="card-header font-weight-bold">
+  <h3>Account</h3>
+  
+  </div>
+  <div class="card-body ml-md-2 p-sm-2 p-0 mt-3">
+  
+  
+  
+  <!-- border: 1px solid #000; -->
+  <div class="d-flex flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column" style="width: 100%;">
+  <div class="d-xl-flex d-lg-flex d-md-none d-sm-none d-none justify-content-center flex-column" style="width: 40%;">
+  
+  <div class="d-flex flex-column justify-content-center align-items-center vertical-align-center">
+      
+    {% if request.user.is_authenticated %}
+          
+    <img class="img-thumbnail profile-image" id="id_profile_image_display" src="{{request.user.profile_image}}" style="width: 60%;">
+{% endif %}
+      
+      <div class="d-flex align-items-center justify-content-center mt-1" style=" width: 100%;">
+          <a class="btn btn-primary btn-block profile-edit-btn waves-effect waves-light" href="/account/edit/" style="margin-right: 0px;">Edit Profile</a>
+      </div> 
+  </div>
+  
+  
+  </div>
+  <div class="d-xl-none d-lg-none d-md-flex d-sm-flex d-flex justify-content-center flex-column" style="width: 100%;">
+      
+      <div class="d-flex  flex-column  justify-content-center align-items-center vertical-align-center">
+
+        {% if request.user.is_authenticated %}
+          
+              <img class="img-thumbnail profile-image" id="id_profile_image_display" src="{{request.user.profile_image}}" style="width: 60%;">
+          {% endif %}
+      </div>
+      <div class="d-flex align-items-center justify-content-center mt-1" style=" width: 100%;">
+          <a class="btn btn-primary btn-block profile-edit-btn waves-effect waves-light" href="/account/edit/" style="margin-right: 0px;">Edit Profile</a>
+      </div>  
+      
+  </div>
+  
+  
+  {% if request.user.is_authenticated %}
+  <div class="account-attributes d-flex justify-content-start align-items-start vertical-align-center flex-column p-xl-4 p-lg-4 p-md-3 p-sm-3 p-0">
+  <div class="d-flex flex-row justify-content-between" style="width: 100%;">
+      <div class="d-flex flex-column justify-content-between ml-3">
+        
+          <h5 class="text-dark">
+              <strong>{{request.user.full_name}}</strong>
+          </h5>
+         
+          <!-- <h6 class="text-primary">
+              Software Developer
+          </h6> -->
+      </div>
+  
+  </div>
+  <div class="d-flex justify-content-between flex-column mt-3 p-3" style="width: 100%;">
+  
+          <!-- START USERNAME FIELD -->
+          <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
+              <div class="text d-flex">
+                  <span class="text-dark">Email:</span>
+              </div>
+  
+              <div class="d-flex">
+                  
+                  <span class="text text-primary">{{request.user.email}}</span>
+                  
+              </div>
+          </div>
+          <div class="d-flex justify-content-between flex-row" style="width: 100%;">
+              <div class="text d-flex">
+                  
+              </div>
+          </div>
+          <!-- END USERNAME FIELD -->
+  
+          <!-- START FIRST NAME FIELD -->
+          <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
+              <div class="text d-flex">
+                  <span class="text-dark">Username:</span>
+              </div>
+  
+              <div class="d-flex">
+                  
+                      
+                          <span class="text text-primary">{{request.user.username}}</span>
+                      
+                  
+              </div>
+          </div>
+          <div class="d-flex justify-content-between flex-row" style="width: 100%;">
+              <div class="text d-flex">
+                  
+              </div>
+          </div>
+          <!-- END FIRST NAME FIELD -->
+  
+          <!-- START LAST NAME FIELD -->
+          <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
+              <div class="text d-flex">
+                  <span class="text-dark">Instagram:</span>
+              </div>
+  
+              <div class="d-flex">
+                  
+                      
+                          <span class="text text-primary">{{request.user.instagram}}</span>
+                      
+                  
+              </div>
+          </div>
+          <div class="d-flex justify-content-between flex-row" style="width: 100%;">
+              <div class="text d-flex">
+                  
+              </div>
+          </div>
+          <!-- END LAST NAME FIELD -->
+  
+  
+          
+          <!-- END EMAIL FIELD -->
+  
+          <!-- START PROFESSION FIELD -->
+          <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
+              <div class="text d-flex">
+                  <span class="text-dark">Art Profession:</span>
+              </div>
+  
+              <div class="text d-flex">
+                     
+                          <span class="text-primary">{{request.user.artist_type}}r</span>
+                      
+                  
+              </div>
+          </div>
+          <div class="d-flex justify-content-between flex-row" style="width: 100%;">
+              <div class="text d-flex">
+                  
+              </div>
+          </div>
+          <!-- END PROFESSION FIELD -->    
+          
+  
+          <!-- START WEBSITE FIELD -->
+          <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
+              <div class="text d-flex">
+                  <span class="text-dark">Website:</span>
+              </div>
+  
+              <div class="text d-flex">
+                  
+                      
+                          <a href="//None" rel="noopener noreferrer" target="_blank"><span class="text-primary">None</span></a>
+              </div>
+          </div>
+          <div class="d-flex justify-content-between flex-row" style="width: 100%;">
+              <div class="text d-flex">
+                  
+              </div>
+          </div>
+          <!-- END WEBSITE FIELD -->  
+          
+          <!-- START EMAIL FIELD -->
+          <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
+            <div class="text d-flex">
+                <span class="text-dark">Bio:</span>
+            </div>
+
+            <div class="text d-flex">
+                
+                    <span class="text-primary">{{request.user.bio}}</span>
+                
+            </div>
+        </div>
+        <div class="d-flex justify-content-between flex-row" style="width: 100%;">
+            <div class="text d-flex">
+                
+            </div>
+        </div>
+
+  </div>
+  </div>
+  {% endif %}
+
+  
+
+  </div>
+  <!-- -->
+
+  <div class="container mt-4 p-4">
+    <div class="row">
+      <div class="blog-posts">
+        <h3 class="mb-3 font-weight-normal">My Work: </h3>
+         
+          <ul class="list-group">
+         
+            <a href="" style="text-decoration: none;"><li class="list-group-item">Posts</li></a>
+         
+          </ul>
+        
+          <p>You have no posts. Create a post <a href="{% url 'create' %}">here</a>.</p>
+        
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}
