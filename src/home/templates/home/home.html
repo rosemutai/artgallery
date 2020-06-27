@@ -37,6 +37,11 @@
   
     <div class="col-md-4">
       <img class="imgart mt-4" src="{{ art.image.url }}" alt="Card image cap" width="350px" height="250px">
+      <span style="color: #000000;">
+        <p><strong>{{art.title}} </strong></p>
+        <p><strong>Artist: </strong>{{art.artist}}</p>
+        <button class="btn btn-info">more</button>
+      </span>
     </div>
   
     {% endfor%}
