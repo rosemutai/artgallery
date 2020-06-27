@@ -30,7 +30,22 @@
 <section class="featured-section">
   <h1 class="featured">Featured</h1>
 <br>
-{% include "home/snippets/featured.html" %}
+<div class="container-fluid">
+
+  <div class="row">
+    {% for art in arts_featured %}
+  
+    <div class="col-md-4">
+      <img class="imgart mt-4" src="{{ art.image.url }}" alt="Card image cap" width="350px" height="250px">
+    </div>
+  
+    {% endfor%}
+    <!-- <div class="col-md-4">.col-md-4</div> -->
+  
+  </div>
+
+</div>
+
 </section>
 
 {% endblock content %}

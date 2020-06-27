@@ -14,7 +14,7 @@ class Art(models.Model):
     title = models.CharField(max_length=100)
     category = models.ForeignKey(ArtCategory, on_delete=models.CASCADE)
     artist = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(upload_to="myimages")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)

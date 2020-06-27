@@ -4,10 +4,9 @@ from .models import Art
 
 
 def home_screen_view(request):
-  context = {}
-
-  return render(request,"home/home.html")
-
-def featured_art(request):
   arts_featured = Art.objects.filter(featured = True)
-  return render(request, 'home/snippets/featured.html', {'arts_featured': arts_featured})
+  return render(request,"home/home.html",{ 'arts_featured': arts_featured})
+  
+
+# def featured_art(request):
+#   return render(request, 'home/featured.html', {})

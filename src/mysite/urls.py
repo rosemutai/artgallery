@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as  auth_views
-from home.views import(home_screen_view, featured_art)
+from home.views import(home_screen_view)
 from account.views import(login_view,registration_view,logout_view,account_view)
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,7 +29,7 @@ urlpatterns = [
     path('login/',login_view, name="login"),
     path('logout', logout_view, name="logout"),
     path('register/' ,registration_view, name='register'),
-    path('featuredart/' ,featured_art, name='featuredart'),
+    # path('featuredart/' ,featured_art, name='featuredart'),
 
 
 
