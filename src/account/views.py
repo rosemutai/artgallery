@@ -126,5 +126,5 @@ def create_profile_view(request):
 
 			context['form'] = form
 
-	return render(request, "account/create_profile.html", context)
+	return render(request, "account/edit_account.html", context)
 

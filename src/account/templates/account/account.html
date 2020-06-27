@@ -156,7 +156,7 @@
           </div>
           <!-- END USERNAME FIELD -->
   
-          <!-- START FIRST NAME FIELD -->
+          <!-- START USERNAMENAME FIELD -->
           <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
               <div class="text d-flex">
                   <span class="text-dark">Username:</span>
@@ -177,18 +177,14 @@
           </div>
           <!-- END FIRST NAME FIELD -->
   
-          <!-- START LAST NAME FIELD -->
+          <!-- START INSTAGRAM FIELD -->
           <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
               <div class="text d-flex">
                   <span class="text-dark">Instagram:</span>
               </div>
   
-              <div class="d-flex">
-                  
-                      
+              <div class="d-flex">       
                           <span class="text text-primary">{{request.user.instagram}}</span>
-                      
-                  
               </div>
           </div>
           <div class="d-flex justify-content-between flex-row" style="width: 100%;">
@@ -196,6 +192,22 @@
                   
               </div>
           </div>
+
+
+          <div class="d-flex justify-content-between flex-row my-1" style="width: 100%;">
+            <div class="text d-flex">
+                <span class="text-dark">Facebook:</span>
+            </div>
+
+            <div class="d-flex">       
+                        <span class="text text-primary"><a href="{{request.user.facebook}}">{{request.user.facebook}}</a></span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between flex-row" style="width: 100%;">
+            <div class="text d-flex">
+                
+            </div>
+        </div>
           <!-- END LAST NAME FIELD -->
   
   
