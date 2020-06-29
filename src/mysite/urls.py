@@ -20,16 +20,20 @@ from home.views import(home_screen_view)
 from account.views import(login_view,registration_view,logout_view,account_view)
 from django.conf import settings
 from django.conf.urls.static import static
-
+from account.views import(login_view,registration_view,logout_view,account_view,create_profile_view,)
+# 7ceee90afe0e4533552aca157b0274e18bef4ccf
 
 urlpatterns = [
     path('',home_screen_view, name="home"),
     path('admin/', admin.site.urls),
     path('account/', account_view, name="account"),
-    path('login/',login_view, name="login"),
     path('logout', logout_view, name="logout"),
+    path('login/',login_view, name="login"),
+
     path('register/' ,registration_view, name='register'),
-    # path('featuredart/' ,featured_art, name='featuredart'),
+    path('create/' ,create_profile_view, name='create'),
+    # path('must_authenticate/',must_authenticate_view, name='must_authenticate'),
+#  7ceee90afe0e4533552aca157b0274e18bef4ccf
 
 
 

@@ -1,17 +1,18 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
-from account.models import Account
+from account.models import Account, Profile
+
 
 class RegistrationForm(UserCreationForm):
   email = forms.EmailField(max_length=60 , help_text = "Required, add a valid email")
 
   class Meta:
     model = Account
-    fields = ('email','username','password','password2')
+    fields = ('email','username','password1','password2')
 
 class AccountAuthenticationForm(forms.ModelForm):
-  password = forms.CharField(label="Password", widget= forms.PasswordInput)
+  password = forms.CharField(label="Password", widget = forms.PasswordInput)
 
   class Meta:
     model = Account
@@ -39,3 +40,9 @@ class AccountUpdateForm(forms.ModelForm):
         except Account.DoesNotExist:
           return email
         raise forms.ValidationError('Email "%s" is already in use.' % account)
+
+
+class CreateProfileForm(forms.ModelForm):
+  class Meta :
+    model = Profile
+    fields = ('full_name', 'profile_image', 'artist_category', 'bio', )

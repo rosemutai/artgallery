@@ -72,6 +72,7 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'account.Account'
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
