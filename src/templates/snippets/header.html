@@ -27,13 +27,17 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 	form{
 		width: 100%;
 	}
+
+	#user-name{
+		color: burlywood;
+	}
 </style>
 
 	<!-- Header -->
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
 	  <h5 class="my-0 mr-md-auto font-weight-normal">
 	  	{% if request.user.is_authenticated %}
-	  	<p>Hello, {{request.user.username}} </p>
+	  	<p id="user-name">Hello, {{request.user.username}} </p>
 
 	  	{% else %}
 	  	<p>Art Gallery</p>

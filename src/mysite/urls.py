@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as  auth_views
-from home.views import(home_screen_view)
+from home.views import(home_screen_view, upload_art_view)
 from account.views import(login_view,registration_view,logout_view,account_view)
 from django.conf import settings
 from django.conf.urls.static import static
-from account.views import(login_view,registration_view,logout_view,account_view,create_profile_view,)
+from account.views import(login_view,registration_view,logout_view,account_view,create_profile_view)
+from home.views import(upload_art_view)
 # 7ceee90afe0e4533552aca157b0274e18bef4ccf
 
 urlpatterns = [
@@ -32,6 +33,7 @@ urlpatterns = [
 
     path('register/' ,registration_view, name='register'),
     path('create/' ,create_profile_view, name='create'),
+    path('upload/', upload_art_view, name="upload"),
     # path('must_authenticate/',must_authenticate_view, name='must_authenticate'),
 #  7ceee90afe0e4533552aca157b0274e18bef4ccf
 
@@ -51,4 +53,6 @@ urlpatterns = [
 
 
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

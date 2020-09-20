@@ -6,6 +6,10 @@ body {
   margin: 0;
 }
 
+#user-name{
+  color: burlywood;
+}
+
 section {
   padding: 0;
   margin: 0;

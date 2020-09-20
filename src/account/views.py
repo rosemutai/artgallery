@@ -121,10 +121,11 @@ def create_profile_view(request):
 		# p = Profile(full_name=name,profile_image= profile_img, artist_category = category, bio = bio)
 		# p.save()
 
-
 		# form.save()
 
 			context['form'] = form
 
 	return render(request, "account/edit_account.html", context)
+
+
 
