@@ -20,7 +20,7 @@
 <p class="success">Your venue was submitted successfully. Thank you.</p>
 {% else %}
 
-<form method="post"  class="upload-artform">
+<form method="post" action="{% url 'upload' %}"  class="upload-artform">
     <h5 id="upload-title"><em>Please upload your art using the form below</em></h5>
     {% csrf_token %}
     {{ upload_form | crispy }}

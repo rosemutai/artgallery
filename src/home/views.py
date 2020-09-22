@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Art
 from home.forms import UploadArtForm
 from django.http import HttpResponseRedirect
@@ -22,10 +22,13 @@ def upload_art_view(request):
     if upload_form.is_valid():
       upload_form.save()
       print(upload_form)
-      return HttpResponseRedirect('/upload_art_view/?submitted=True')
+      return redirect('success')
      
   else:
      upload_form = UploadArtForm()
      if 'submitted' in request.GET:
        submitted = True
   return render(request, 'upload_art.html', {'upload_form': upload_form, 'submitted': submitted})
+
+def successView(request):
+    return HttpResponse('Success! Thank you for your message.')
